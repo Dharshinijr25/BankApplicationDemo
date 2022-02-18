@@ -80,8 +80,19 @@ namespace BankApplicationDemo
             List<Emplyee> em = new List<Emplyee>();
 
             AMTDeletegate ad = new AMTDeletegate(dc.SavingAMT);
-            string filepath = "C:\\First.txt";
-            Console.WriteLine("Welcome Axis Bank");
+            string filepath = @"D:\\First.txt";
+            try
+            {
+                if (!File.Exists(filepath))
+                    {
+                    File.Create(filepath);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+                    Console.WriteLine("Welcome Axis Bank");
         CreateAccount:
             while (n == 0)
             {
@@ -93,12 +104,12 @@ namespace BankApplicationDemo
                 switch (choice)
                 {
                     case 1:
+                        emp = new Emplyee();
                         emp.AccountType = "Savings A/C";
                         Console.WriteLine("Your Savings A/C has been Created Suceessfully");
                         Console.WriteLine("Daily Limit for the Saving A/C is 100000");
                         Console.WriteLine("Enter Emplyee Details :");
                         Console.WriteLine("Emp Id:");
-                        emp = new Emplyee();
                         emp.EmpId = Console.ReadLine();
                         Console.WriteLine("Emp Name:");
                         emp.Name = Console.ReadLine();
@@ -130,12 +141,13 @@ namespace BankApplicationDemo
 
                         break;
                     case 2:
+                        emp = new Emplyee();
                         emp.AccountType = "Current A/C";
                         Console.WriteLine("You have Sucessfully Created the Current A/C");
                         Console.WriteLine("Daily Limit for the Saving A/c is 200000");
                         Console.WriteLine("Enter Emplyee Details :");
                         Console.WriteLine("Emp Id:");
-                        emp = new Emplyee();
+                        
                         emp.EmpId = Console.ReadLine();
                         Console.WriteLine("Emp Name:");
                         emp.Name = Console.ReadLine();
@@ -163,12 +175,13 @@ namespace BankApplicationDemo
                         }
                         break;
                     case 3:
+                        emp = new Emplyee();
                         emp.AccountType = "Child Care A/C";
                         Console.WriteLine("You have Sucessfully Created the Savings A/C");
                         Console.WriteLine("Daily Limit for the Saving A/c is 50000 ");
                         Console.WriteLine("Enter Emplyee Details :");
                         Console.WriteLine("Emp Id:");
-                        emp = new Emplyee();
+                        
                         emp.EmpId = Console.ReadLine();
                         Console.WriteLine("Emp Name:");
                         emp.Name = Console.ReadLine();
@@ -201,11 +214,13 @@ namespace BankApplicationDemo
                         Console.WriteLine("you have not select the A/C");
                         break;
                 }
-                em.Add(emp);
+                if (choice >= 1 && choice <= 3)
+                {
+                    em.Add(emp);
+                }
 
                 //Console.WriteLine("Do You want to Store the this Emplyee Details? Press 1");
                 //int Save = Convert.ToInt32(Console.ReadLine());
-                int Save = 1;
                 if (choice>=1 && choice<=3)
                 {
                     try
@@ -225,7 +240,7 @@ namespace BankApplicationDemo
                 }
                 if (choice >= 1 && choice <= 3)
                 {
-                    Console.WriteLine("EmpId \t Name \t Address \t AccountType \t Amount");
+                    Console.WriteLine("\nEmpId \t Name \t\t Address \t AccountType \t Amount");
                     foreach (Emplyee e in em)
                     {
                         Console.WriteLine(e.EmpId + "\t" + e.Name + "\t" + e.Address + "\t" + e.AccountType + "\t" + e.Amount + "\n");
