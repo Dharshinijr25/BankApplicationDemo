@@ -206,7 +206,7 @@ namespace BankApplicationDemo
                 //Console.WriteLine("Do You want to Store the this Emplyee Details? Press 1");
                 //int Save = Convert.ToInt32(Console.ReadLine());
                 int Save = 1;
-                if (Save == 1)
+                if (choice>=1 && choice<=3)
                 {
                     try
                     {
@@ -223,10 +223,13 @@ namespace BankApplicationDemo
                         Console.WriteLine(e.Message);
                     }
                 }
-                Console.WriteLine("EmpId \t Name \t Address \t AccountType \t Amount");
-                foreach (Emplyee e in em)
+                if (choice >= 1 && choice <= 3)
                 {
-                    Console.WriteLine(e.EmpId + "\t" + e.Name + "\t" + e.Address + "\t" + e.AccountType + "\t" + e.Amount + "\n");
+                    Console.WriteLine("EmpId \t Name \t Address \t AccountType \t Amount");
+                    foreach (Emplyee e in em)
+                    {
+                        Console.WriteLine(e.EmpId + "\t" + e.Name + "\t" + e.Address + "\t" + e.AccountType + "\t" + e.Amount + "\n");
+                    }
                 }
                 Console.WriteLine("Do you want to create new Account? Press 1");
                 n = Convert.ToInt32(Console.ReadLine());
