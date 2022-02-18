@@ -9,9 +9,47 @@ namespace BankApplicationDemo
 {
     public class AmountExceedException : Exception
     {
-        public AmountExceedException() : base()
+        private static string msg = "Amount Limit Has Exceeded";
+        public AmountExceedException() : base(msg)
         {
             Console.WriteLine("Amount Limit Has Exceeded");
+        }
+    }
+    class Transaction
+    {
+        public void Display()
+        {
+            Console.WriteLine("\nSelect\n 1. Deposite \n 2. WithDraw \n 3. Check Balance \n 4. for Exit");
+        }
+        public void checkBal(Emplyee e)
+        {
+            Console.WriteLine("Avaliable Balance : "  + e.Amount);
+        }
+        public void Deposite(Emplyee e)
+        {
+            int Amount;
+            Console.WriteLine("Enter the Amount to Deposite Balance : ");
+            Amount = Convert.ToInt32(Console.ReadLine());
+            e.Amount = e.Amount + Amount;
+            if (e.AmtTrans > 3)
+            {
+                e.Amount = e.Amount - 500;
+            }
+            Console.WriteLine("\nAmount has been Deposited Sucessfully");
+            checkBal(e);
+        }
+        public void Withdraw(Emplyee e)
+        {
+            int Amount;
+            Console.WriteLine("Enter the Amount to Withdraw Balance : ");
+            Amount = Convert.ToInt32(Console.ReadLine());
+            e.Amount = e.Amount - Amount;
+            if (e.AmtTrans > 3)
+            {
+                e.Amount = e.Amount - 500;
+            }
+            Console.WriteLine("\nYou have withdraw the "+ Amount);
+            checkBal(e);
         }
     }
     class Emplyee
@@ -76,9 +114,10 @@ namespace BankApplicationDemo
             int choice, amount;
             int n = 0;
             Emplyee emp = new Emplyee();
+            Transaction tran = new Transaction();
             DelegateClass dc = new DelegateClass();
             List<Emplyee> em = new List<Emplyee>();
-
+            int AmtChoice;
             AMTDeletegate ad = new AMTDeletegate(dc.SavingAMT);
             string filepath = @"D:\\First.txt";
             try
@@ -120,8 +159,8 @@ namespace BankApplicationDemo
                         if (amount > 100000)
                         {
                             emp.Amount = 0;
-                            throw new AmountExceedException();
-                            //Console.WriteLine("Amount Exceeded");
+                            //throw (new AmountExceedException());
+                            Console.WriteLine("Amount Exceeded");
                         }
                         else
                         {
@@ -133,9 +172,36 @@ namespace BankApplicationDemo
                         int Option = Convert.ToInt32(Console.ReadLine());
                         if (Option == 1)
                         {
+                            emp.AmtTrans = 0;
                             ad = new AMTDeletegate(dc.SavingAMT);
                             ad();
+                            ContineTransaction1:
+                            tran.Display();
+                            AmtChoice = Convert.ToInt32(Console.ReadLine());
+                            while(true)
+                            {
+                                switch (AmtChoice)
+                                {
+                                    case 1:
+                                        tran.Deposite(emp);
+                                        emp.AmtTrans++;
+                                        goto ContineTransaction1;
+                                    case 2:
+                                        tran.Withdraw(emp);
+                                        emp.AmtTrans++;
+                                        goto ContineTransaction1;
+                                    case 3:
+                                        tran.checkBal(emp);
+                                        emp.AmtTrans++;
+                                        goto ContineTransaction1;
+                                    case 4:
+                                        goto ContineBankOperation;
+                                    default:
+                                        Console.WriteLine("Wrong Selection. Please Select Valid option");
+                                        goto ContineTransaction1;
 
+                                }
+                            }
                         }
 
 
@@ -158,7 +224,7 @@ namespace BankApplicationDemo
                         if (amount > 200000)
                         {
                             emp.Amount = 0;
-                            //throw new AmountExceedException();
+                            //throw (new AmountExceedException());
                             Console.WriteLine("Amount Exceeded");
                         }
                         else
@@ -169,8 +235,36 @@ namespace BankApplicationDemo
                             Option = Convert.ToInt32(Console.ReadLine());
                             if (Option == 1)
                             {
-                                ad += new AMTDeletegate(dc.CurrentAMT);
+                                ad = new AMTDeletegate(dc.CurrentAMT);
                                 ad();
+                            ContineTransaction1:
+                                tran.Display();
+                                AmtChoice = Convert.ToInt32(Console.ReadLine());
+                                while (true)
+                                {
+                                    switch (AmtChoice)
+                                    {
+                                        case 1:
+                                            tran.Deposite(emp);
+                                            emp.AmtTrans++;
+                                            goto ContineTransaction1;
+                                        case 2:
+                                            tran.Withdraw(emp);
+                                            emp.AmtTrans++;
+                                            goto ContineTransaction1;
+                                        case 3:
+                                            tran.checkBal(emp);
+                                            emp.AmtTrans++;
+                                            goto ContineTransaction1;
+                                        case 4:
+                                            goto ContineBankOperation;
+                                        default:
+                                            Console.WriteLine("Wrong Selection. Please Select Valid option");
+                                            goto ContineTransaction1;
+
+                                    }
+                                }
+
                             }
                         }
                         break;
@@ -192,8 +286,8 @@ namespace BankApplicationDemo
                         if (amount > 50000)
                         {
                             emp.Amount = 0;
-                            throw new AmountExceedException();
-                            //Console.WriteLine("Amount Exceeded");
+                            //throw (new AmountExceedException());
+                            Console.WriteLine("Amount Exceeded");
                         }
                         else
                         {
@@ -203,8 +297,35 @@ namespace BankApplicationDemo
                             Option = Convert.ToInt32(Console.ReadLine());
                             if (Option == 1)
                             {
-                                ad += new AMTDeletegate(dc.ChildCareAMT);
+                                ad = new AMTDeletegate(dc.ChildCareAMT);
                                 ad();
+                            ContineTransaction1:
+                                tran.Display();
+                                AmtChoice = Convert.ToInt32(Console.ReadLine());
+                                while (true)
+                                {
+                                    switch (AmtChoice)
+                                    {
+                                        case 1:
+                                            tran.Deposite(emp);
+                                            emp.AmtTrans++;
+                                            goto ContineTransaction1;
+                                        case 2:
+                                            tran.Withdraw(emp);
+                                            emp.AmtTrans++;
+                                            goto ContineTransaction1;
+                                        case 3:
+                                            tran.checkBal(emp);
+                                            emp.AmtTrans++;
+                                            goto ContineTransaction1;
+                                        case 4:
+                                            goto ContineBankOperation;
+                                        default:
+                                            Console.WriteLine("Wrong Selection. Please Select Valid option");
+                                            goto ContineTransaction1;
+
+                                    }
+                                }
                             }
                         }
                         break;
@@ -214,6 +335,7 @@ namespace BankApplicationDemo
                         Console.WriteLine("you have not select the A/C");
                         break;
                 }
+                ContineBankOperation:
                 if (choice >= 1 && choice <= 3)
                 {
                     em.Add(emp);
