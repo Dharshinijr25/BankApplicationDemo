@@ -1,0 +1,7 @@
+C:\Users\adminvm.adminvm\source\repos\BankApplicationDemo\BankApplicationDemo\bin\Debug\BankApplicationDemo.exe.config
+C:\Users\adminvm.adminvm\source\repos\BankApplicationDemo\BankApplicationDemo\bin\Debug\BankApplicationDemo.exe
+C:\Users\adminvm.adminvm\source\repos\BankApplicationDemo\BankApplicationDemo\bin\Debug\BankApplicationDemo.pdb
+C:\Users\adminvm.adminvm\source\repos\BankApplicationDemo\BankApplicationDemo\obj\Debug\BankApplicationDemo.csprojAssemblyReference.cache
+C:\Users\adminvm.adminvm\source\repos\BankApplicationDemo\BankApplicationDemo\obj\Debug\BankApplicationDemo.csproj.CoreCompileInputs.cache
+C:\Users\adminvm.adminvm\source\repos\BankApplicationDemo\BankApplicationDemo\obj\Debug\BankApplicationDemo.exe
+C:\Users\adminvm.adminvm\source\repos\BankApplicationDemo\BankApplicationDemo\obj\Debug\BankApplicationDemo.pdb
